@@ -25,7 +25,7 @@ class ChannelsStream(SlackStream):
     def get_url_params(self, context, next_page_token):
         """Augment default to filter channel types to return and extract messages from."""
         params = super().get_url_params(context, next_page_token)
-        params["exclude_archived"] = False
+        params["exclude_archived"] = True
         params["types"] = ",".join(self.config["channel_types"])
         return params
 
