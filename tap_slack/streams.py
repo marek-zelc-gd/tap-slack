@@ -34,7 +34,7 @@ class ChannelsStream(SlackStream):
         row = super().post_process(row, context)
         # return all in selected_channels or default to all, exclude any in excluded_channels list
         channel_id = row["id"]
-        if self._is_channel_included(channel_id) and (row["name"][:4] == "cust" or row["name"][:4] == "deal" or row["name"][:7] == "partner"):
+        if self._is_channel_included(channel_id) and (row["name"][:5] == "cust-" or row["name"][:5] == "deal-" or row["name"][:8] == "partner-"):
             if not row["is_member"] and self.config.get("auto_join_channels", False):
                 self._join_channel(channel_id)
             return row
